@@ -23,7 +23,7 @@ jobs:
               export APPLITOOLS_BRANCH_NAME="Plakhota/js-images-circleCI/"$CIRCLE_BRANCH
               curl -H "apiKey: $APPLITOOLS_API_KEY" -v -L -d '' -X POST "eyesapi.applitools.com/api/externals/github/push?CommitSha=$CIRCLE_SHA1&BranchName=$APPLITOOLS_BRANCH_NAME"
             else
-              echo "Is a PR, expect Branch and Parent Branch set by the Github integration app"
+              echo "Is a PR, expect Branch and Parent Branch set by the Github integration app "
             fi
             export APPLITOOLS_BATCH_ID=${CIRCLE_SHA1}
             echo ${APPLITOOLS_BATCH_ID}
