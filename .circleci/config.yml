@@ -28,5 +28,9 @@ jobs:
             export APPLITOOLS_BATCH_ID=${CIRCLE_SHA1}
             echo ${APPLITOOLS_BATCH_ID}
             echo ${APPLITOOLS_BRANCH_NAME}
-            APPLITOOLS_DONT_CLOSE_BATCHES=true npm test
+            
+            curl -v -L -d '' -X PUT "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/batch?apiKey=$APPLITOOLS_API_KEY
+            /api/Sessions/batches/{BatchId}/batch
+            
+            #APPLITOOLS_DONT_CLOSE_BATCHES=true npm test
             
