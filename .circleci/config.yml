@@ -29,8 +29,8 @@ jobs:
             echo ${APPLITOOLS_BATCH_ID}
             echo ${APPLITOOLS_BRANCH_NAME}
             
-            curl -v -L -X PUT "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/batch?apiKey=$APPLITOOLS_API_KEY
-            curl -v -L -X DELETE "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/close/bypointerid?apiKey=$APPLITOOLS_API_KEY
+            curl -v -L -X PUT "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/batch?apiKey=$APPLITOOLS_API_KEY"
+            curl -v -L -X DELETE "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/close/bypointerid?apiKey=$APPLITOOLS_API_KEY"
 
             
             
