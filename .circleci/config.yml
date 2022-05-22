@@ -26,11 +26,11 @@ jobs:
               echo "Is a PR, expect Branch and Parent Branch set by the Github integration app"
             fi
             export APPLITOOLS_BATCH_ID=${CIRCLE_SHA1}
-            echo ${APPLITOOLS_BATCH_ID}
-            echo ${APPLITOOLS_BRANCH_NAME}
+            echo APPLITOOLS_BATCH_ID=${APPLITOOLS_BATCH_ID}
+            echo APPLITOOLS_BRANCH_NAME=${APPLITOOLS_BRANCH_NAME}
             
-            curl -v -L -X PUT "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/batch?apiKey=$APPLITOOLS_API_KEY
-            curl -v -L -X DELETE "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/close/bypointerid?apiKey=$APPLITOOLS_API_KEY
+            curl -v -L -X PUT "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/batch?apiKey=$APPLITOOLS_API_KEY"
+            curl -v -L -X DELETE "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/close/bypointerid?apiKey=$APPLITOOLS_API_KEY"
 
             
             
