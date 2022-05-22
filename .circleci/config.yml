@@ -18,10 +18,12 @@ jobs:
       - run:
           name: Set environnment variable and run test
           command: | 
+            echo CIRCLE_SHA1
+            export APPLITOOLS_BATCH_ID=${CIRCLE_SHA1}
             if [[ -z "${CIRCLE_PULL_REQUEST}" ]]; then
               echo "Not  a PR, add an APPLITOOLS_BRANCH_NAME"
-              export APPLITOOLS_BRANCH_NAME="Plakhota/js-images-circleCI/"$CIRCLE_BRANCH
-              curl -v -L -d '' -X POST "eyesapi.applitools.com/api/externals/github/push?apiKey=$APPLITOOLS_API_KEY&CommitSha=$CIRCLE_SHA1&BranchName=$APPLITOOLS_BRANCH_NAME"
+              export APPLITOOLS_BRANCH_NAME="Plakhota/js-images-circleCI/"${CIRCLE_BRANCH}
+              #curl -v -L -d '' -X POST "eyesapi.applitools.com/api/externals/github/push?apiKey=$APPLITOOLS_API_KEY&CommitSha=${CIRCLE_SHA1}&BranchName=$APPLITOOLS_BRANCH_NAME"
             else
               echo "Is a PR, expect Branch and Parent Branch set by the Github integration app"
             fi
@@ -29,8 +31,8 @@ jobs:
             echo APPLITOOLS_BATCH_ID=${APPLITOOLS_BATCH_ID}
             echo APPLITOOLS_BRANCH_NAME=${APPLITOOLS_BRANCH_NAME}
             
-            curl -v -L -X PUT "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/batch?apiKey=$APPLITOOLS_API_KEY"
-            curl -v -L -X DELETE "eyesapi.applitools.com/api/Sessions/batches/$CIRCLE_SHA/close/bypointerid?apiKey=$APPLITOOLS_API_KEY"
+            curl -v -L -X PUT "eyesapi.applitools.com/api/Sessions/batches/$APPLITOOLS_BATCH_ID/batch?apiKey=$APPLITOOLS_API_KEY"
+            curl -v -L -X DELETE "eyesapi.applitools.com/api/Sessions/batches/$APPLITOOLS_BATCH_ID/close/bypointerid?apiKey=$APPLITOOLS_API_KEY"
 
             
             
