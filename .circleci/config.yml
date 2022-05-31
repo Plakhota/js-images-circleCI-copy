@@ -26,7 +26,7 @@ jobs:
             export APPLITOOLS_BATCH_ID=${CIRCLE_SHA1}
             echo ${APPLITOOLS_BATCH_ID}
             echo ${APPLITOOLS_BRANCH_NAME}
-            export APPLITOOLS_BRANCH_NAME="Plakhota/js-images-circleCI/"$CIRCLE_BRANCH
+            export APPLITOOLS_BRANCH_NAME=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH
             curl -v -L -d '' -X POST "eyesapi.applitools.com/api/externals/github/push?apiKey=$APPLITOOLS_API_KEY&CommitSha=$CIRCLE_SHA1&BranchName=$APPLITOOLS_BRANCH_NAME"
             APPLITOOLS_DONT_CLOSE_BATCHES=true npm test
             
