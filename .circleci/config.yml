@@ -30,6 +30,6 @@ jobs:
             curl -v -L -d '' -X POST "eyesapi.applitools.com/api/externals/github/push?apiKey=$APPLITOOLS_API_KEY&CommitSha=$CIRCLE_SHA1&BranchName=$APPLITOOLS_BRANCH_NAME"
             APPLITOOLS_DONT_CLOSE_BATCHES=false npm test
             curl -v -L -d '' -X POST "eyesapi.applitools.com/api/externals/github/servers/github.com/commit/${APPLITOOLS_BATCH_ID}/complete?apiKey=${APPLITOOLS_API_KEY}"
-        
+            curl -v -X DELETE "eyesapi.applitools.com/api/sessions/batches/${APPLITOOLS_BATCH_ID}/close/bypointerid?apiKey=${APPLITOOLS_API_KEY}"
 
             
